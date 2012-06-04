@@ -1,19 +1,19 @@
 
-require 'solve'  # <-- your sinatra app
-require 'test/spec'
-require 'rack/test'
+#require 'solve'  # <-- your sinatra app
+#require 'test/spec'
+#require 'rack/test'
 
-set :environment, :test
+#set :environment, :test
 
-describe 'The solver' do
-  include Rack::Test::Methods
+#describe 'The solver' do
+  #include Rack::Test::Methods
 
-  def app
-    Sinatra::Application
-  end
+  #def app
+    #Sinatra::Application
+  #end
 
-  it "says hello" do
-    get '/'
-    last_response.should.be.ok
-  end
-end
+  #it "says hello" do
+    #get '/'
+    #last_response.should.be.ok
+  #end
+#end

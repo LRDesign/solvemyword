@@ -5,10 +5,6 @@ describe Solve::Dictionary do
     Solve::Dictionary.new('dict/american-words.10')
   end
   describe "loading a file" do
-    it "should respond to foo" do
-      Solve::Dictionary.instance_methods.should include(:foo)
-    end
-
     it "should have 35 words" do
       dictionary.words.count.should == 35
     end
