@@ -21,7 +21,7 @@ module Solve
     end
 
     def matches_word?(word, opts = DEFAULT_OPTS)
-
+      selected_dictionaries(opts).any?{ |dict| dict.include?(word)}
     end
 
     def selected_dictionaries(opts = DEFAULT_OPTS)

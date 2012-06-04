@@ -1,7 +1,11 @@
 require 'sinatra'
 require 'haml'
+$: << 'lib'
+require 'pp'
+pp $:
+require 'solve/library'
 
-LIBRARY = {}
+LIBRARY = Solve::Library.new
 
 
 get '/' do
@@ -26,12 +30,9 @@ get '/solve' do
     end.join
   end.uniq
 
-  wordcount = dictionaries.reduce(0){|sum, d| sum += d.count; sum}
-  p "dictionaries count: #{dictionaries.count}"
-  #dictionaries.each do |dic|
-    #p [dic.count, dic[0]]
-
-  #end
+  results = permutations.each.map do |perm|
+    perm.downcase if LIBRARY.matches_word?(perm.downcase)
+  end.compact
 
   "".tap do |result|
     result << "Params: #{params.inspect}"
@@ -40,24 +41,11 @@ get '/solve' do
     result << "<hr />"
     result << line("Tested permutations: " + permutations.join(', '))
     result << "<hr />"
-    result << "Against #{dictionaries.count} dictionaries with #{wordcount} words"
-    result << "<hr />"
-    result << "Available dictionaries include #{lines(LIBRARY.keys)}"
+    result << line("<h2>Found results:</h2>")
+    result << lines(results)
   end
 end
 
-def dictionaries
-  languages = ['english', 'american']
-  limit = 70
-  [].tap do |dicts|
-    languages.each do |lang|
-      p lang
-      dicts << LIBRARY[lang].keys.map do |level|
-        LIBRARY[lang][level] if level <= limit
-      end
-    end
-  end
-end
 
 def line(str)
   "#{str}<br>"
@@ -68,4 +56,3 @@ def lines(array)
 end
 
 
-dictionaries
