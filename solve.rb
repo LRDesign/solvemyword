@@ -13,7 +13,7 @@ end
 
 get '/solve' do
   pattern = params['pattern'].gsub(/ /,'_').chars.to_a
-  letters = params['letters'].chars.to_a
+  letters = params['letters'].chars.to_a.sort
 
   permutations = Solve::Permuter.pattern_fill(letters,pattern)
 
@@ -21,16 +21,12 @@ get '/solve' do
     perm.downcase if LIBRARY.matches_word?(perm.downcase)
   end.compact
 
-  "".tap do |result|
-    result << "Params: #{params.inspect}"
-    result << "<hr />"
-    result << "You entered #{letters.inspect} for pattern #{pattern.inspect} <br>"
-    result << "<hr />"
-    result << line("Tested permutations: " + permutations.join(', '))
-    result << "<hr />"
-    result << line("<h2>Found results:</h2>")
-    result << lines(results)
-  end
+  haml :results, :format => :html5, :locals => {
+    :results => results,
+    :permutations => permutations,
+    :pattern => pattern,
+    :letters => letters
+  }
 end
 
 

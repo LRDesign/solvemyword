@@ -1,0 +1,20 @@
+!!!
+%body
+  %h1 Word Search Results
+  %h2
+    Letters tried:
+    = letters.join(" ").upcase
+  %h2
+    Pattern:
+    = pattern.join(" ").upcase
+  %h2 Found words:
+  - if results.length < 1
+    No results found!
+  - else
+    = results.join(', ')
+
+  %h2 Permutations considered:
+  #permutations
+    = permutations.join(', ')
+
+
