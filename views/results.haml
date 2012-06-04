@@ -1,5 +1,4 @@
-!!!
-%body
+#results
   %h1 Word Search Results
   %h2
     Letters tried:
@@ -13,8 +12,9 @@
   - else
     = results.join(', ')
 
-  %h2 Permutations considered:
-  #permutations
+  #permutations{:style => 'display: none;'}
+    %h2 Permutations considered:
     = permutations.join(', ')
 
-
+#form
+  =haml :form

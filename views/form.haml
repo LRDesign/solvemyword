@@ -1,0 +1,10 @@
+%form{ :action => '/solve' }
+
+  .section
+    %h2 What do you need to fill in?
+    .comment Enter any letters you already know and use spaces or '_' for empty spots.
+    %input{ :name => 'pattern', :placeholder => 'pattern' }
+  .section
+    %h2 What letters do you have?
+    %input{ :name => 'letters', :placeholder => 'letters' }
+  %input{ :type => 'submit' }

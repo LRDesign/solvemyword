@@ -2,7 +2,7 @@ require 'solve/dictionary'
 module Solve
   class Library
     LIMIT = 80
-    DEFAULT_LEVEL = 80
+    DEFAULT_LEVEL = 60
     DEFAULT_OPTS = {
       :language => 'american',
       :level => DEFAULT_LEVEL
