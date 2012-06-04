@@ -1,10 +1,11 @@
 %form{ :action => '/solve' }
-
   .section
-    %h2 What do you need to fill in?
-    .comment Enter any letters you already know and use spaces or '_' for empty spots.
-    %input{ :name => 'pattern', :placeholder => 'pattern' }
-  .section
-    %h2 What letters do you have?
-    %input{ :name => 'letters', :placeholder => 'letters' }
-  %input{ :type => 'submit' }
+    .framed_input.pattern
+      %h2 Fill this pattern:
+      %input{ :name => 'pattern', :placeholder => 'pattern', :size => 8 }
+      %p.comment Enter any letters you already know and use spaces or '_' for empty spots.
+    .framed_input.letters
+      %h2 With these letters:
+      %input{ :name => 'letters', :placeholder => 'letters', :size => 8 }
+      %p.comment Letters available to fill spaces with.  You can enter letters more than once.
+  %input{ :type => 'submit', :value => "Search Dictionary!" }

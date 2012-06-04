@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'haml'
+require 'sass'
 $: << 'lib'
 require 'solve/library'
 require 'solve/permuter'
@@ -29,13 +30,7 @@ get '/solve' do
   }
 end
 
-
-def line(str)
-  "#{str}<br>"
+get '/application.css' do
+  headers 'Content-Type' => 'text/css; charset=utf-8'
+  sass :application
 end
-
-def lines(array)
-  array.join("<br>")
-end
-
-

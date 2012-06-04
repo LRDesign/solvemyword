@@ -1,0 +1,91 @@
+@import meyer-reset.sass
+
+$content_width: 1024px
+$column_padding: 20px
+
+=clearfix
+  &:before
+    content: ""
+    display: table
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+body
+  :background gray
+  :font-family sans-serif
+
+#content
+  :background white
+  :width $content_width
+  :margin 1em auto
+  +clearfix
+
+#sidebar
+  :width ($content_width * 0.40) - $column_padding
+  :float right
+  :padding-right 1em
+  *:first-child
+    :margin-top 0
+
+.results
+  :padding 10px $column_padding
+  :font-family monospace
+  :font-size 250%
+  :color #a33
+  :background #e0e0e6
+  :margin 1em
+  :border-radius 10px
+  :font-weight bold
+  :text-align center
+
+$main_column_width: ($content_width * 0.55) - $column_padding
+#main
+  :width $main_column_width
+  :float left
+  :padding-left 1em
+
+form
+  input
+    :font-size 250%
+    :font-family monospace
+  .comment
+    :font-size 80%
+    :font-style italic
+  .section
+    +clearfix
+  $framed_input_padding: 10px
+  .framed_input
+    :border 1px solid black
+    :border-radius 8px
+    :width ($main_column_width * 0.45) - ( 2 * $framed_input_padding)
+    :padding $framed_input_padding
+    :text-align center
+    &.pattern
+      :float left
+    &.letters
+      :float right
+    h2
+      :margin-top 0
+  input[type=submit]
+    :margin 0 auto
+
+
+h1,h2,h3,h4
+  :font-weight bold
+  :margin-top 1em
+  :margin-bottom 0.5em
+h1
+  :font-size 200%
+  :text-align center
+h2
+  :font-size 150%
+h3
+  :font-size 120%
+
+p
+  :margin 1em 0
+  &:first-child
+    :margin-top 0
+

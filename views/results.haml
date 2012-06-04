@@ -1,20 +1,22 @@
-#results
-  %h1 Word Search Results
+- if results.length > 0
+  %h1
+    = results.length
+    Words Found:
+  %p.results
+    = results.join(', ')
+- else
+  %h1 Nothin' Found!
+#main
+  =haml :form
+#sidebar
   %h2
     Letters tried:
     = letters.join(" ").upcase
   %h2
     Pattern:
     = pattern.join(" ").upcase
-  %h2 Found words:
-  - if results.length < 1
-    No results found!
-  - else
-    = results.join(', ')
 
   #permutations{:style => 'display: none;'}
     %h2 Permutations considered:
     = permutations.join(', ')
 
-#form
-  =haml :form
