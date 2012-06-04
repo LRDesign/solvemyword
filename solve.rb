@@ -2,6 +2,7 @@ require 'sinatra'
 require 'haml'
 $: << 'lib'
 require 'solve/library'
+require 'solve/permuter'
 
 LIBRARY = Solve::Library.new
 
@@ -13,20 +14,8 @@ end
 get '/solve' do
   pattern = params['pattern'].gsub(/ /,'_').chars.to_a
   letters = params['letters'].chars.to_a
-  p pattern
-  p letters
 
-  permutations = letters.permutation.map do |lets|
-    n = 0
-    pattern.map do |ch|
-      if ch == "_"
-        n += 1
-        lets[n].to_s
-      else
-        ch.to_s
-      end
-    end.join
-  end.uniq
+  permutations = Solve::Permuter.pattern_fill(letters,pattern)
 
   results = permutations.each.map do |perm|
     perm.downcase if LIBRARY.matches_word?(perm.downcase)
