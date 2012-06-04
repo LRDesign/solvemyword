@@ -1,7 +1,13 @@
 @import meyer-reset.sass
+@import gradient.sass
 
 $content_width: 1024px
 $column_padding: 20px
+$border_radius: 10px
+=shadow
+  box-shadow:  4px 4px 5px rgba(50, 50, 50, 0.45)
+=dark_shadow
+  box-shadow:  4px 4px 5px rgba(50, 50, 50, 0.65)
 
 =clearfix
   &:before
@@ -28,6 +34,8 @@ body
   :padding-right 1em
   *:first-child
     :margin-top 0
+  p
+    :color #632
 
 .results
   :padding 10px $column_padding
@@ -36,7 +44,7 @@ body
   :color #a33
   :background #e0e0e6
   :margin 1em
-  :border-radius 10px
+  :border-radius $border_radius
   :font-weight bold
   :text-align center
 
@@ -47,6 +55,9 @@ $main_column_width: ($content_width * 0.55) - $column_padding
   :padding-left 1em
 
 form
+  :padding-bottom 1em
+  :margin-bottom 1em
+
   input
     :font-size 250%
     :font-family monospace
@@ -58,18 +69,27 @@ form
   $framed_input_padding: 10px
   .framed_input
     :border 1px solid black
-    :border-radius 8px
+    :border-radius $border_radius
     :width ($main_column_width * 0.45) - ( 2 * $framed_input_padding)
-    :padding $framed_input_padding
     :text-align center
+    :padding $framed_input_padding
+    +shadow
     &.pattern
       :float left
     &.letters
       :float right
     h2
       :margin-top 0
-  input[type=submit]
+  button
     :margin 0 auto
+    :width 100%
+    :font-size 200%
+    :border-radius $border_radius
+    :margin 1em 0
+    +button_gradient
+    +shadow
+  button:hover
+    +dark_shadow
 
 
 h1,h2,h3,h4
