@@ -1,9 +1,10 @@
 require 'sinatra'
+require 'haml'
 
 get '/' do
-  'Hello world!  Please <a href="link">click the link!</a>'
+  haml :index, :format => :html5
 end
 
-get '/link' do
-  'You clicked the link!'
+get '/solve' do
+  "You entered #{params.inspect}"
 end
