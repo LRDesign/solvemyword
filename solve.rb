@@ -1,8 +1,6 @@
 require 'sinatra'
 require 'haml'
 $: << 'lib'
-require 'pp'
-pp $:
 require 'solve/library'
 
 LIBRARY = Solve::Library.new
