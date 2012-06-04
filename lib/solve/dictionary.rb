@@ -10,6 +10,10 @@ module Solve
         @words = File.readlines(file_name).map{|word| word.chomp}
       end
     end
+
+    def include?(word)
+      @words.include?(word)
+    end
   end
 end
 

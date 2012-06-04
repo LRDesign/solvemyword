@@ -16,7 +16,15 @@ describe Solve::Dictionary do
     it "should be level 10" do
       dictionary.level.should == 10
     end
+  end
 
+  describe "include?" do
+    it "should not contain 'colour'" do
+      dictionary.should_not include('colour')
+    end
+    it "should contain 'color'" do
+      dictionary.should include('color')
+    end
   end
 end
 
