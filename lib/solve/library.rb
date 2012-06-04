@@ -2,9 +2,10 @@ require 'solve/dictionary'
 module Solve
   class Library
     LIMIT = 80
+    DEFAULT_LEVEL = 80
     DEFAULT_OPTS = {
       :language => 'american',
-      :limit => 70
+      :level => DEFAULT_LEVEL
     }
 
     attr_accessor :dictionaries
@@ -25,9 +26,10 @@ module Solve
 
     def selected_dictionaries(opts = DEFAULT_OPTS)
       languages = ['english'] + [*opts[:language]]
+      level = opts[:level] || DEFAULT_LEVEL
 
       @dictionaries.select do |d|
-        languages.include?(d.language)
+        languages.include?(d.language) && (d.level <= level)
       end
     end
 
