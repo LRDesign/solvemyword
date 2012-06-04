@@ -1,17 +1,8 @@
 require 'sinatra'
 require 'haml'
 
-dictionary = {}
+LIBRARY = {}
 
-Dir.glob('dict/*-words.*') do |dict_file|
-  lang = dict_file.match(/(\w+)-words/)[1].to_s
-  size = dict_file.match(/\.(\d+)/)[1].to_i
-  if size < 90
-    dictionary[lang] ||= {}
-    dictionary[lang][size] = File.readlines(dict_file).map{|word| word.chomp}
-    dictionary
-  end
-end
 
 get '/' do
   haml :index, :format => :html5
@@ -24,7 +15,6 @@ get '/solve' do
   p letters
 
   permutations = letters.permutation.map do |lets|
-    p lets
     n = 0
     pattern.map do |ch|
       if ch == "_"
@@ -36,18 +26,38 @@ get '/solve' do
     end.join
   end.uniq
 
+  wordcount = dictionaries.reduce(0){|sum, d| sum += d.count; sum}
+  p "dictionaries count: #{dictionaries.count}"
+  #dictionaries.each do |dic|
+    #p [dic.count, dic[0]]
+
+  #end
 
   "".tap do |result|
     result << "Params: #{params.inspect}"
     result << "<hr />"
     result << "You entered #{letters.inspect} for pattern #{pattern.inspect} <br>"
     result << "<hr />"
-    result << "Tested permutations: " + lines(permutations)
+    result << line("Tested permutations: " + permutations.join(', '))
     result << "<hr />"
-    result << "Available dictionaries include #{lines(dictionary.keys)}"
+    result << "Against #{dictionaries.count} dictionaries with #{wordcount} words"
+    result << "<hr />"
+    result << "Available dictionaries include #{lines(LIBRARY.keys)}"
   end
 end
 
+def dictionaries
+  languages = ['english', 'american']
+  limit = 70
+  [].tap do |dicts|
+    languages.each do |lang|
+      p lang
+      dicts << LIBRARY[lang].keys.map do |level|
+        LIBRARY[lang][level] if level <= limit
+      end
+    end
+  end
+end
 
 def line(str)
   "#{str}<br>"
@@ -56,3 +66,6 @@ end
 def lines(array)
   array.join("<br>")
 end
+
+
+dictionaries
