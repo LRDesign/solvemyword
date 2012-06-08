@@ -4,11 +4,20 @@
   %meta{ name: "description", content: "SolveMyWord solves word games for you: find that missing word !" }
   %meta{ name:"keywords", content: "Word Finder, Word Solver, Solver, scrabble solver, words with friends, EveryWord, Every Word, Text Twist, Word Game, Find Words, Dictionary" }
   %link{:rel => "stylesheet", :href => "/application.css", :type => "text/css", :media => "all"}
+
+%body
+  #content
+    = yield
+  #footer
+    SolveMyWord! is a product of Evan Dorn and Logical Reality Design, Inc.  &copy; 2012, all rights reserved.
+    %br
+    %a{:href => 'http://LRDesign.com'} Web Development by LRD
+
   :javascript
     var is_ssl = ("https:" == document.location.protocol);
     var asset_host = is_ssl ? "https://d3rdqalhjaisuu.cloudfront.net/" : "http://d3rdqalhjaisuu.cloudfront.net/";
     document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
-
+  :javascript
     var feedback_widget_options = {};
 
     feedback_widget_options.display = "overlay";
@@ -17,8 +26,4 @@
     feedback_widget_options.color = "#222";
     feedback_widget_options.style = "idea";
     var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
-
-%body
-  #content
-    = yield
 

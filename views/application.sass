@@ -27,6 +27,19 @@ body
   :width $content_width
   :margin 1em auto
   +clearfix
+#footer
+  $padding: 20px
+  :background #ccc
+  :width $content_width - 2 * $padding
+  :margin 1em auto
+  :font-size 80%
+  :font-weight italic
+  :line-height 1.75em
+  :padding $padding
+  :text-align center
+  :color #633
+
+
 
 #sidebar
   :width ($content_width * 0.40) - $column_padding
@@ -36,6 +49,7 @@ body
     :margin-top 0
   p
     :color #632
+    :line-height 1.5em
 
 .results
   :padding 10px $column_padding
@@ -95,7 +109,7 @@ form
 h1,h2,h3,h4
   :font-weight bold
   :margin-top 1em
-  :margin-bottom 0.5em
+  :margin-bottom 1.5em
 h1
   :font-size 200%
   :text-align center
