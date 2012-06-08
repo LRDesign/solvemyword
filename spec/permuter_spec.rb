@@ -4,8 +4,13 @@ describe Solve::Permuter do
 
   describe "pattern_fill" do
     let :pattern do ['_','_','_'] end
+    let :inputs do
+      { :pattern => pattern,
+        :letters => ['a','b','c']
+      }
+    end
     let! :pattern_fill do
-      Solve::Permuter.pattern_fill(['a','b','c'], pattern)
+      Solve::Permuter.pattern_fill(inputs)
     end
     it "should return an array of strings" do
       pattern_fill.should be_a(Array)
