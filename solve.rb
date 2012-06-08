@@ -1,10 +1,12 @@
-require 'sinatra'
-require 'haml'
-require 'sass'
+require 'bundler/setup'
+Bundler.require(:default)
+
+
 $: << 'lib'
 require 'solve/library'
 require 'solve/permuter'
 require 'solve/params_handler'
+
 
 LIBRARY = Solve::Library.new
 
