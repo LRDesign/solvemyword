@@ -1,9 +1,9 @@
 module Solve
   class Permuter
-    def self.pattern_fill(letters, pattern)
-      letters.permutation.map do |lets|
+    def self.pattern_fill(inputs)
+      inputs[:letters].permutation.map do |lets|
         n = 0
-        pattern.map do |ch|
+        inputs[:pattern].map do |ch|
           if ch == "_"
             n += 1
             lets[n-1].to_s

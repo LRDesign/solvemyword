@@ -4,6 +4,7 @@ require 'sass'
 $: << 'lib'
 require 'solve/library'
 require 'solve/permuter'
+require 'solve/params_handler'
 
 LIBRARY = Solve::Library.new
 
@@ -13,10 +14,8 @@ get '/' do
 end
 
 get '/solve' do
-  pattern = params['pattern'].gsub(/ /,'_').chars.to_a
-  letters = params['letters'].chars.to_a.sort
-
-  permutations = Solve::Permuter.pattern_fill(letters,pattern)
+  inputs = Solve::ParamsHandler.handle(params)
+  permutations = Solve::Permuter.pattern_fill(inputs)
 
   results = permutations.each.map do |perm|
     perm.downcase if LIBRARY.matches_word?(perm.downcase)
@@ -24,10 +23,8 @@ get '/solve' do
 
   haml :results, :format => :html5, :locals => {
     :results => results,
-    :permutations => permutations,
-    :pattern => pattern,
-    :letters => letters
-  }
+    :permutations => permutations
+  }.merge!(inputs)
 end
 
 get '/application.css' do
