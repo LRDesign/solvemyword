@@ -29,7 +29,6 @@ config/*.sphinx.conf
 config/environments/test_*.rb
 capybara*.html
 .bundle/*
-public/sitemap.xml
 *.orig
 ./assets/
 coverage/*
