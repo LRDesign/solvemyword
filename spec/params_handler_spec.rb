@@ -51,6 +51,11 @@ describe Solve::ParamsHandler do
       end
     end
 
+    describe "with whitespace in the letters" do
+      it "should eliminate the whitespace" do
+        Solve::ParamsHandler.handle(valid_params.merge!({'letters' => "a b \tcdef"}))[:letters].should == ['a', 'b', 'c', 'd', 'e', 'f']
+      end
+    end
     describe "with a too-long array of letters" do
       it "should raise a ParamsException" do
         lambda do

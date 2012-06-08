@@ -3,12 +3,13 @@ module Solve
     LETTERS_LIMIT = 8
 
     def self.handle(params)
+      params['letters'].gsub!(/\s/,'')
       check_for_valid_params(params)
       {}.tap do |hash|
 
 
         hash[:letters] = params['letters'].chars.to_a.sort
-        hash[:pattern] = params['pattern'].gsub(/ /,'_').chars.to_a
+        hash[:pattern] = params['pattern'].gsub(/[ -]/,'_').chars.to_a
       end
     end
 
